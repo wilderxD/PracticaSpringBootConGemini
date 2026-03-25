@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AprendoApplication implements CommandLineRunner{
 
-    @Autowired
-    private ProductoRepository prepository;
+    /*
+    private ProductoRepository prepository;*/
     
     private static final Logger logger = LoggerFactory.getLogger(AprendoApplication.class);
     
@@ -23,7 +23,7 @@ public class AprendoApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        Producto p1 = new Producto();
+       /* Producto p1 = new Producto();
         p1.setNombre("Arroz");
         p1.setPrecio(3.5);
         
@@ -43,6 +43,6 @@ public class AprendoApplication implements CommandLineRunner{
         
         for(Producto produc : productos){
             System.out.println(produc.getNombre() + ", " + produc.getPrecio());
-        }
+        }*/
     }
 }
