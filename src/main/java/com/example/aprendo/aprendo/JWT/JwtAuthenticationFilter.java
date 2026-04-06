@@ -35,6 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         //si no hay caebcera o no empieza con Bearer lo dejara pasar para que no haya interferencia con las rutas publicas 
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
+            return;
         }
         
         //Extraemos el Token quitando los 7 primeros caracteres: "Bearer "
