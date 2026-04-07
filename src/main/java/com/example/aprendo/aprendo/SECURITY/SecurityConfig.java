@@ -3,6 +3,7 @@ package com.example.aprendo.aprendo.SECURITY;
 import com.example.aprendo.aprendo.JWT.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -40,6 +41,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth//configuramos que rutas dejamos abiertas y cuales no
                     .requestMatchers("/h2-console/**").permitAll()//dejamos abierta la BD H2 para pruebas
                     .requestMatchers("/api/auth/**").permitAll()//dejamos abierta la ruta a un login que crearemos a futuro
+                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()//Permitir las rutas de swagger
+                    .requestMatchers("/error").permitAll()
                     .anyRequest().authenticated())//Cualquier otra ruta exige estar autenticado
                 .authenticationProvider(authenticationProvider())//agregamos nuestro proveedor de autenticacion
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);//ponemos nuestro filtro JWT antes que el de Sprint
