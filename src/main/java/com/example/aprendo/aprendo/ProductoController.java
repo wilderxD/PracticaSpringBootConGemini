@@ -1,5 +1,7 @@
 package com.example.aprendo.aprendo;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/productos")
+@Tag(name = "Productos", description = "EndPoints para la gestion del inventario de producto")
 public class ProductoController {        
     
     private final ProductoService servicio;
@@ -31,6 +34,7 @@ public class ProductoController {
     }
     
     @GetMapping
+    @Operation(summary = "Listar todos los productos", description = "Devuelve una lista completa con todos los productos disponibles en la base de datos")
     public List<ProductoDTO> obtenerTodos(){
         List<Producto> listaProductos =  servicio.obtenerTodos();
         
@@ -40,6 +44,7 @@ public class ProductoController {
     }
     
     @PostMapping
+    @Operation(summary = "Crear un producto", description = "Guarda un nuevo producto en el sistema. Requiere validacion de nombre y precio.")
     public ResponseEntity<ProductoDTO> guardar(@Valid @RequestBody ProductoDTO productoDTO){
                 
         Producto producto = productoMapper.toEntity(productoDTO);        
@@ -50,6 +55,7 @@ public class ProductoController {
     }
     
     @GetMapping("/{id}")
+    @Operation(summary = "Lista un producto", description = "Lista un producto de la base de datos usando su ID, requiere que se le mande u numero de ID ")
     public ResponseEntity<ProductoDTO> obtenerUno(@PathVariable Long id){
         /*Optional<Producto> produc = servicio.obtenerPorId(id);        
         
@@ -69,6 +75,7 @@ public class ProductoController {
     } 
     
     @PutMapping("/{id}")
+    @Operation(summary = "Actualiza datos", description = "Actualiza los datos de un producto usadno su ID para la busqueda. Requiere el ID del producto a actualizar y valida nombre y precio")
     public ResponseEntity<ProductoDTO> actualizar(@Valid @RequestBody ProductoDTO productoDTO, @PathVariable Long id){
         Producto productoEditado = productoMapper.toEntity(productoDTO);
         
@@ -79,6 +86,7 @@ public class ProductoController {
     
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')") // EL CANDADO
+    @Operation(summary = "Elimina un producto", description = "Borra un producto de la base de datos. Requiere un ID de tipo Long")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
         servicio.eliminar(id);
         return ResponseEntity.noContent().build();
