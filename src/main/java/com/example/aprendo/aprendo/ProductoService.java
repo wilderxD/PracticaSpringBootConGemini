@@ -3,19 +3,33 @@ package com.example.aprendo.aprendo;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductoService {
     
     private final ProductoRepository repositorio;
+    private final ProductoMapper productoMapper;
 
-    public ProductoService(ProductoRepository repositorio) {
+    public ProductoService(ProductoRepository repositorio, ProductoMapper productoMapper) {
         this.repositorio = repositorio;
+        this.productoMapper = productoMapper;
     }
     
     public List<Producto> obtenerTodos(){
         return repositorio.findAll();
+    }
+    
+    public Page<ProductoDTO> obtenerTodosPaginados(Pageable pageable){
+        //Buscamos en la base de datos usando el Pageable
+        Page<Producto> paginasProductos = repositorio.findAll(pageable);
+        
+        //convertimos la pagina de entidades a DTOs
+        return paginasProductos.map(producto -> productoMapper.toDTO(producto));       
+        
     }
     
     public Producto guardar(Producto p){
