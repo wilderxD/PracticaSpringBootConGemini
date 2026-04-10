@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,20 @@ public class ProductoService {
     
     public void eliminar(Long id){
         repositorio.deleteById(id);
+    }
+    
+    // ENDPONTS DE PRUEBA
+    int numeroDePagina = 0;
+    int tamanoDePagina = 5;
+    
+    public Page<Producto> obtenerPaginadode5(){
+    Pageable miOrden = PageRequest.of(numeroDePagina, tamanoDePagina);
+    
+    return repositorio.findAll(miOrden);
+    
+    List<Producto> mis5Productos = cajaDeRespuesta.getContent();
+    
+    return cajaDeRespuesta.map(producto -> productoMapper.toDTO(producto));
     }
     
 }
