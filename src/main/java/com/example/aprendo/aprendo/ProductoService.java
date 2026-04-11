@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -61,14 +62,23 @@ public class ProductoService {
     int numeroDePagina = 0;
     int tamanoDePagina = 5;
     
-    public Page<Producto> obtenerPaginadode5(){
+    public Page<Producto> obtenerPaginadode5(Pageable ordenPaginacion){
     Pageable miOrden = PageRequest.of(numeroDePagina, tamanoDePagina);
     
-    return repositorio.findAll(miOrden);
-    
-    List<Producto> mis5Productos = cajaDeRespuesta.getContent();
-    
-    return cajaDeRespuesta.map(producto -> productoMapper.toDTO(producto));
+    return repositorio.findAll(miOrden);   
     }
+    
+    //Solicitar la tercera página con tamaño de 10. (Recuerda cómo empezamos a contar).
+    public Page<Producto> obtenerLaTerceraPagina(Pageable orden){
+        return 
+    }
+    
+    //Solicitar la página 0, tamaño 20, ordenando por 'precio' de forma ascendente.
+    public Page<Producto> ObtenerPaginadode20Ordenado(Pageable orden){
+                
+        return repositorio.findAll(orden);
+    }
+    
+    //
     
 }

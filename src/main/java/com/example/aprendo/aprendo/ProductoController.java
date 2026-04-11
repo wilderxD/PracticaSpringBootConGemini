@@ -49,19 +49,28 @@ public class ProductoController {
     }
     
     @GetMapping("/paginado")
-    public ResponseEntity<Page<ProductoDTO>> listarPaginado(
+    public ResponseEntity<Page<Producto>> listarPaginado(
             @RequestParam(defaultValue = "0") int page, 
-            @RequestParam(defaultValue = "10") int size, 
+            @RequestParam(defaultValue = "5") int size, 
             @RequestParam(defaultValue = "nombre,asc") String sort){
         //Convertimos los strings en un objeto Pageable
         //El formato de sort es "campo, direccion" (ej: "precio, desc")
-        String[] sortParams = sort.split(",");
-        Sort orden = sortParams[1].equalsIgnoreCase("asc") ? Sort.by(sortParams[0]).ascending() : Sort.by(sortParams[0]).descending();
+        Pageable miOrden = PageRequest.of(page, size);
         
-        Pageable pageable = PageRequest.of(page, size, orden);
-        
-        return ResponseEntity.ok(servicio.obtenerTodosPaginados(pageable));
+        Page<Producto> cajaDeRespuesta = servicio.obtenerPaginadode5(miOrden);
+        return ResponseEntity.ok(cajaDeRespuesta);        
     }
+    
+    @GetMapping("/paginadode20")
+    public ResponseEntity<Page<ProductoDTO>> listarPaginadoDe20(@RequestParam int page, @RequestParam int size){
+        Pageable orden = PageRequest.of(page, size);
+        
+        Page<Producto> cajaDeRespuesta = servicio.ObtenerPaginadode20Ordenado(orden);
+        
+        return ResponseEntity.ok(cajaDeRespuesta.map(producto -> productoMapper.toDTO(producto)));        
+    }
+    
+    
     
     @PostMapping
     @Operation(summary = "Crear un producto", description = "Guarda un nuevo producto en el sistema. Requiere validacion de nombre y precio.")
