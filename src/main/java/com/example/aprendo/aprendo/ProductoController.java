@@ -61,16 +61,32 @@ public class ProductoController {
         return ResponseEntity.ok(cajaDeRespuesta);        
     }
     
+    @GetMapping("/terceraPAgina")
+    public ResponseEntity<Page<ProductoDTO>> listarTerceraPagina(@RequestParam int page, @RequestParam int size){
+        Pageable orden = PageRequest.of(page, size);
+        
+        Page<Producto> cajaRespuesta = servicio.obtenerLaTerceraPagina(orden);
+        
+        return ResponseEntity.ok(cajaRespuesta.map(producto -> productoMapper.toDTO(producto)));        
+    }
+    
     @GetMapping("/paginadode20")
     public ResponseEntity<Page<ProductoDTO>> listarPaginadoDe20(@RequestParam int page, @RequestParam int size){
-        Pageable orden = PageRequest.of(page, size);
+        Pageable orden = PageRequest.of(page, size, Sort.by("precio").ascending());
         
         Page<Producto> cajaDeRespuesta = servicio.ObtenerPaginadode20Ordenado(orden);
         
         return ResponseEntity.ok(cajaDeRespuesta.map(producto -> productoMapper.toDTO(producto)));        
     }
     
-    
+    @GetMapping("/paginadoDe10OrdenAsc")
+    public ResponseEntity<Page<ProductoDTO>> listarPagina0De10OrdenadoAsc(@RequestParam int page, @RequestParam int size){
+        Pageable orden = PageRequest.of(page, size, Sort.by("nombre").descending());
+        
+        Page<Producto> cajaRespuesta = servicio.obtenerPaginadoDe10Ordenado(orden);
+        
+        return ResponseEntity.ok(cajaRespuesta.map(producto -> productoMapper.toDTO(producto)));        
+    }
     
     @PostMapping
     @Operation(summary = "Crear un producto", description = "Guarda un nuevo producto en el sistema. Requiere validacion de nombre y precio.")

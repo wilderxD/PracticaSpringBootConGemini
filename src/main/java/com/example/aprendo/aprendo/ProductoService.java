@@ -70,7 +70,7 @@ public class ProductoService {
     
     //Solicitar la tercera página con tamaño de 10. (Recuerda cómo empezamos a contar).
     public Page<Producto> obtenerLaTerceraPagina(Pageable orden){
-        return 
+        return repositorio.findAll(orden);
     }
     
     //Solicitar la página 0, tamaño 20, ordenando por 'precio' de forma ascendente.
@@ -79,6 +79,12 @@ public class ProductoService {
         return repositorio.findAll(orden);
     }
     
+    //Solicitar la página 0, tamaño 10, ordenando por 'nombre' de forma descendente.
+    public Page<Producto> obtenerPaginadoDe10Ordenado(Pageable orden){
+        return repositorio.findAll(orden);
+    }
+    
     //
+    
     
 }
