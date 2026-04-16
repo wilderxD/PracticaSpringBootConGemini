@@ -39,6 +39,17 @@ public class JwtService {
                 
     }
     
+    public String generateToken(String username){
+        return Jwts.builder()
+                .setClaims(new HashMap<>())
+                .setSubject(username)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                //Expiracion: 15 minutos
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 16 * 15))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();                
+    }
+    
     //validar si es valido el token
     public boolean isTokenValid(String token, UserDetails userDetails){
                 final String username = extractUsername(token);
