@@ -45,7 +45,4 @@ public class SesionActual {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-    
 }

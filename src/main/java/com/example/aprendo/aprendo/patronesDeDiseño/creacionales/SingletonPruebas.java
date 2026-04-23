@@ -1,5 +1,6 @@
 package com.example.aprendo.aprendo.patronesDeDiseño.creacionales;
 
+import com.example.aprendo.aprendo.patronesDeDiseño.creacionales.singleton.BaseDatosEnum;
 import com.example.aprendo.aprendo.patronesDeDiseño.creacionales.singleton.CacheMemoria;
 import com.example.aprendo.aprendo.patronesDeDiseño.creacionales.singleton.ColaImpresion;
 import com.example.aprendo.aprendo.patronesDeDiseño.creacionales.singleton.ConexionBD;
@@ -68,7 +69,7 @@ public class SingletonPruebas {
         SesionActual sa2 = SesionActual.getInstance();
         System.out.println(sa2.getEstado());
         
-        
+        BaseDatosEnum.INSTANCIA.getClass();
         
     }
     
