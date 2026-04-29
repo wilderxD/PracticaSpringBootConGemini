@@ -43,6 +43,10 @@ public class EnumImplementacion {
         System.out.println("Codigo: " + CodigoErrorApi.NOT_FOUND.getCodigoHttp() + " " + CodigoErrorApi.NOT_FOUND.getMensaje());
         
         //EJERCICIO 7
+        System.out.println("La moneda buscada es: " + Moneda.buscarPorSimbolo("S/."));
+        
+        //EJERCICIO 8
+        
         
         
     }
