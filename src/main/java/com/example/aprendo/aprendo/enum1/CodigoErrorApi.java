@@ -11,7 +11,7 @@ public enum CodigoErrorApi {
     private String mensaje;
     
     private CodigoErrorApi(int codigo, String mensaje){
-        this.codigoHttp = codigoHttp;
+        this.codigoHttp = codigo;
         this.mensaje = mensaje;
     }
 

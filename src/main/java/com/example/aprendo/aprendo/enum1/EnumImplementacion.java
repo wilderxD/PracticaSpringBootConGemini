@@ -45,8 +45,8 @@ public class EnumImplementacion {
         //EJERCICIO 7
         System.out.println("La moneda buscada es: " + Moneda.buscarPorSimbolo("S/."));
         
-        //EJERCICIO 8
-        
+        //EJERCICIO 9
+        System.out.println("Cual es el estado de este documento: " + EstadoDocumento.APROVADO.siguientePaso());
         
         
     }
