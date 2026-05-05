@@ -48,7 +48,20 @@ public class EnumImplementacion {
         //EJERCICIO 9
         System.out.println("Cual es el estado de este documento: " + EstadoDocumento.APROVADO.siguientePaso());
         
+        //Ejercicio 11
+        System.out.println("El costo de envio EXPRESS por los 3.5 kilos es de: " + TipoEnvio.EXPRESS.calcularCosto(3.5));
         
+        //Ejercicio 12
+        System.out.println("es valido: " + ValidadorCampo.EMAIL.esValido("wilder@google.com"));
+        
+        //Ejercicio 13
+        System.out.println("aplicamos formato: " + FormatoTexto.MAYUSCULAS.aplicarFormato("esto es minuscula.!"));
+        
+        //Ejercicio 14
+        System.out.println("Mi estado esta en IN_PROGRESS puedo pasar a TODO: " + EstadoTarea.IN_PROGRESS.puedePasarA(EstadoTarea.TODO));
+        
+        //Ejercicio 15
+        System.out.println("Tu bono como Senior en la empresa es de: " + NivelEmpleado.SENIOR.calcularBono(3200));
     }
     
     public static void sugerirAlmohadas(TamanioColchon medida){
