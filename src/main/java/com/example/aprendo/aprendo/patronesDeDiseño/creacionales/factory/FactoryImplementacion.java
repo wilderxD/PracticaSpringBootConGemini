@@ -19,6 +19,25 @@ public class FactoryImplementacion {
         miNotificacion.enviar("Esto es urgente, responde!");
         
         //Ejercicio 4
+        TipoArma seleccion = TipoArma.ESPADA;
+        IArma miespada = ArmeriaFactory.crearArma(seleccion);
+        System.out.println(miespada.hacerDanio());
+        
+        //Ejercicio 5
+        TipoPago seleccion1 = TipoPago.PAYPAL;
+        IPago mipago = PagoFactory.crearPago(seleccion1, "wilder@sdadkas.com");
+        System.out.println("eL PAGO FUE ACEPTADO: " + mipago);
+        
+        //Ejercicio 6
+        IEnemigo ie = EnemigoFactory.crearEnemigoAleatorio();
+        System.out.println("Aparecio un enemigo: " );
+        ie.gritar();
+        
+        //Ejercicio 7
+        Computadora compu = ComputadoraFactory.crearPcGamer();
+        System.out.println("Esta computadora tiene: " + compu.getRam() + " de memoria ram y tiene tarjetagrafica:" + compu.isTieneGrafica() );
+        
+        //Ejercicio 8
         
         
     }
