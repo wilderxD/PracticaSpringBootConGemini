@@ -38,6 +38,9 @@ public class FactoryImplementacion {
         System.out.println("Esta computadora tiene: " + compu.getRam() + " de memoria ram y tiene tarjetagrafica:" + compu.isTieneGrafica() );
         
         //Ejercicio 8
+        ConexionFactory.obtenerConexion(TipoDB.MYSQL);
+        ConexionFactory.obtenerConexion(TipoDB.MYSQL);
+        ConexionFactory.obtenerConexion(TipoDB.MYSQL);
         
         
     }
