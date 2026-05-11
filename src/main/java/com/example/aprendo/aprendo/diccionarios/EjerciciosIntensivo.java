@@ -1,6 +1,7 @@
 package com.example.aprendo.aprendo.diccionarios;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class EjerciciosIntensivo {
@@ -22,7 +23,7 @@ public class EjerciciosIntensivo {
         glosario.put("Encapsulamento", "Es la habilidad de la clase para poder darle seguridad a sus atributos y metodos.");
         
         if(glosario.containsKey("Herencia")){
-            return;
+            
         }else{
             glosario.put("Herencia", "hereda atributos y metodos de una calase a otra.");
         }
@@ -48,20 +49,42 @@ public class EjerciciosIntensivo {
         tradu.put("Units", "Cantidades");
         tradu.put("Dog", "Perro");
         
-        for(String s : tradu.values()){
-            s.
-            if(s.matches("C")){
+        for(String s : tradu.values()){            
+            
+            if(s.startsWith("C")){
                 System.out.println(s);
             }
         }
-        
-        
+        //metodo seguro que devueve tando valor como clave
+        for(Map.Entry<String, String> entrada : tradu.entrySet()){
+            if(entrada.getValue().startsWith("C")){
+                System.out.println(entrada.getKey() + ", " + entrada.getValue());
+            }
+        }
         
         //6.Registra las paradas de una ruta de entrega en Lima. La llave es el número de parada (1, 2, 3...) y el valor es el distrito. Imprime el mapa y verifica que el orden de ruta se mantenga intacto.
+        Map<Integer, String> mapaRutas = new LinkedHashMap<>();
+        mapaRutas.put(1, "Puente Piedra");
+        mapaRutas.put(2, "Los Olivos");
+        mapaRutas.put(3, "San Martin de Porres");
+        
+        System.out.println(mapaRutas.toString());
         
         //7.Mapea los pasos cronológicos para desarmar un combo promocional en un proceso de logística inversa. Iteralo para mostrar en pantalla el orden exacto de ejecución.
+        Map<String, String> productos = new LinkedHashMap<>();
+        productos.put("10:00", "colchon 2plz");
+        productos.put("10:30", "Tarima 2plz");
+        productos.put("10:32", "Almohada");
+        productos.put("10:38", "cabecera");
+        
+        for(Map.Entry<String, String> p : productos.entrySet()){
+            System.out.println(p.getKey() + ", " + p.getValue());
+        }        
         
         //8.Registra el historial de comandos ingresados en una consola de Spring Boot. La llave es la marca de tiempo (String) y el valor es el comando ejecutado.
+        Map<String, String> mapaConsola = new LinkedHashMap<>();
+        
+        
         
         //9.Guarda el registro de los últimos 5 mantenimientos de un vehículo. Inserta los datos en el orden en que ocurrieron y recórrelos con un for para imprimir el historial.
         
