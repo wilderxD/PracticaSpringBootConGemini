@@ -1,7 +1,10 @@
 package com.example.aprendo.aprendo.streams;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -94,7 +97,114 @@ public class StreamsPractica {
         System.out.println("El total de pasajes gastados a la semana es: S/" + pasaje + ".");
         
         //10
+        List<Integer> kilometrajes = Arrays.asList(25000, 8000, 15000, 30000, 12000);
         
+        List<Integer> kilometrajesOrdenados = kilometrajes.stream()
+                .filter(km -> km > 10000)
+                .sorted()
+                .limit(2)
+                .collect(Collectors.toList());
+        
+        System.out.println(kilometrajesOrdenados.toString());
+        
+        //11
+        List<Integer> capacidades = Arrays.asList(4, 10, 2,15, 8);
+        
+        int capacidadMayor = capacidades.stream()
+                .max(Integer::compareTo)
+                .get();
+        
+        System.out.println(capacidadMayor);
+
+        //12
+        List<String> repuestos = Arrays.asList("Filtro", "Precalentador", "injectores");
+        
+        String repuestosS = repuestos.stream()
+                .collect(Collectors.joining(" - "));
+        
+        System.out.println(repuestosS);
+        
+        //13
+        List<Integer> guiasR = Arrays.asList(1, 2, 3, 4 ,5 ,6 ,7 ,8, 9, 10);
+        
+        List<Integer> guiasPaginado = guiasR.stream()
+                .skip(3)
+                .limit(3)
+                .collect(Collectors.toList());
+        
+        System.out.println(guiasPaginado.toString());
+        
+        //14
+        List<Integer> temperaturasMotor = Arrays.asList(85,90, 88, 92);
+        
+        boolean temperaturaMotor = temperaturasMotor.stream()
+                .noneMatch(temp -> temp >= 100);
+        
+        System.out.println("la temperatura del motor estubo por debajo de los 100 grados: " + temperaturaMotor);
+        
+        //15
+        List<String> vehiculos = Arrays.asList("Auto", "Bus", "Avion","Bicicleta");
+        
+        Map<Character, List<String>> vehiculosOrdenado = vehiculos.stream()
+                .collect(Collectors.groupingBy(palabra -> palabra.charAt(0)));
+        
+        for(Map.Entry<Character, List<String>> v : vehiculosOrdenado.entrySet()){
+            System.out.println(v.getValue().toString());
+        }
+                
+        //16
+        List<String> nombres1 = Arrays.asList("Juan", "", "Pedro", null, "Jose");
+        
+        List<String> nombresLimpio = nombres1.stream()
+                .filter(nombre -> nombre != null)
+                .filter(nombre -> !nombre.isEmpty())
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+        
+        System.out.println(nombresLimpio);
+        
+        //17
+        int[] notas = {15, 18, 12, 20};
+        
+        Double promNotas = Arrays.stream(notas)
+                .average()
+                .getAsDouble();
+        
+        System.out.println("El promedio de notas de este alumno es: " + promNotas);
+        
+        //18
+        List<Double> precios = Arrays.asList(100.0, 200.0, 300.0);
+        
+        List<Double> preciosDsct = precios.stream()
+                .peek(precio -> System.out.println("Procesando: " + precio))
+                .map(precio -> precio *0.9)
+                .collect(Collectors.toList());
+        
+        System.out.println(preciosDsct);
+        
+        //19
+        List<String> palabras = Arrays.asList("Hola", "Mundo", "En java");
+        
+        Integer resultado = palabras.stream()
+                .mapToInt(palabra -> palabra.length())
+                .sum();
+        
+        System.out.println(resultado);
+        
+        //20
+        Map<String, Integer> almacen = new HashMap<>();
+        almacen.put("Llanta", 15);
+        almacen.put("Bateria", 3);
+        almacen.put("Freno", 8);
+        almacen.put("Aceite", 1);
+        
+        List<String> almacenFiltrado = almacen.entrySet()
+                .stream()
+                .filter(cantidad -> cantidad.getValue() < 5)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        
+        System.out.println(almacenFiltrado.toString());
         
     }
     

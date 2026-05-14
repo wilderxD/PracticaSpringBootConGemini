@@ -43,6 +43,8 @@ public class FactoryImplementacion {
         ConexionFactory.obtenerConexion(TipoDB.MYSQL);
         
         
+        
+        
     }
     
 }
