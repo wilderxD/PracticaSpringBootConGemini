@@ -57,6 +57,21 @@ public class DecoratorMain {
         
         System.out.println(procesador.procesar("  Hola   Mundo   Desde   Java  "));
         
+        //7
+        IConexionWeb conexion = new PaginaAdmin();
+        conexion = new DecoradorAutenticacion(conexion);
+        conexion.acceder("wilder");
+        
+        //8
+        System.out.println(PedidoFactory.crearPedidoPersonalizado(true, false, true).obtenerDetalle());
+        
+        //9
+        IRepositorio repositorio = new RepositorioMySQL();
+        repositorio = new DecoradorCache(repositorio);
+        
+        repositorio.buscarUsuario(1);
+        repositorio.buscarUsuario(1);
+        
         
     }
     
