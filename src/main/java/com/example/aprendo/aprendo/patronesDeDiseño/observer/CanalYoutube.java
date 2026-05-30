@@ -6,10 +6,15 @@ import java.util.List;
 public class CanalYoutube implements IObservable{
     private String nombreCanal;
     private List<IObservador> suscriptores= new ArrayList<>();
+
+    public CanalYoutube(String nombreCanal) {
+        this.nombreCanal = nombreCanal;
+    }
+    
     
     public void subirVideo(String titulo){
-        System.out.println("El canal " + nombreCanal + " subio un nuevo video.");
         notificarTodos();
+        System.out.println("El canal " + nombreCanal + " subio un nuevo video.");        
     }
 
     @Override
@@ -25,7 +30,7 @@ public class CanalYoutube implements IObservable{
     @Override
     public void notificarTodos() {
         for(IObservador obs : suscriptores){
-            obs.actualizar(this.nombreCanal);
+            obs.actualizar(""); 
         }
     }
 }
