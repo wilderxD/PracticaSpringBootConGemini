@@ -25,6 +25,26 @@ public class ObserverImplementacion {
         
         canal.subirVideo("Los mejores algoritmos para aprender arquitectura de software.");
         
+        SensorHumo humo = new SensorHumo();
+        IObservador detec1 = new RociadorAgua();
+        IObservador detec2 = new EstacionBomberos();
+        
+        humo.suscribir(detec1);
+        humo.suscribir(detec2);
+        
+        humo.detectarHumo();
+        
+        Subastador sub1 = new Subastador();
+        Postor postor1 = new Postor("Wilder");
+        Postor postor2 = new Postor("Sammir");
+        Postor postor3 = new Postor("Mariafe");
+        
+        sub1.suscribir(postor1);
+        sub1.suscribir(postor2);
+        sub1.suscribir(postor3);
+        
+        sub1.aceptarNuevaOferta(1500);
+        
     }
     
 }
