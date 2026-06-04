@@ -45,6 +45,19 @@ public class ObserverImplementacion {
         
         sub1.aceptarNuevaOferta(1500);
         
+        //4
+        Camion camion = new Camion("BAZ-911");
+        TallerMecanico taller = new TallerMecanico();
+        AdministracionLogistica admi = new AdministracionLogistica();
+        
+        camion.suscribir(admi);
+        camion.suscribir(taller);
+        
+        camion.cambiarEstado("EN REPARACION");
+        
+        //5
+        
+        
     }
     
 }
