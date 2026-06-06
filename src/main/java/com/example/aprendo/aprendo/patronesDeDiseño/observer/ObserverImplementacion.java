@@ -58,6 +58,16 @@ public class ObserverImplementacion {
         //5
         
         
+        //6
+        Servidor servidor = new Servidor("ESPERANDO JUGADORES");
+        IJugador jugador1 = new ClienteJuego("wil1093");
+        IJugador jugador2 = new ClienteJuego("samir02");
+        
+        servidor.suscribir(jugador1);
+        servidor.suscribir(jugador2);
+        
+        servidor.cambiarEstado("EN JUEGO");
+        
     }
     
 }
