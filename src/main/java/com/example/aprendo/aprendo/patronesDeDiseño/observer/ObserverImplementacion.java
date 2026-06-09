@@ -68,6 +68,43 @@ public class ObserverImplementacion {
         
         servidor.cambiarEstado("EN JUEGO");
         
+        //7
+        SistemaOperativo so = new SistemaOperativo();
+                
+        IListener i1 = new ConsolaLogger();
+        IListener i2 = new AlertaCritica();
+                
+        so.suscribir(i1);
+        so.suscribir(i2);
+        
+        so.iniciarPrograma();
+        so.generarFallo();
+        so.generarFallo();
+        so.iniciarPrograma();
+        so.generarFallo();
+        so.iniciarPrograma();
+        
+        //8
+        TiendaForli1 tienda1 = new TiendaForli1();
+        IObservadorTienda os = new ClienteAnsioso(tienda1);
+        
+        tienda1.suscribir(os);
+        tienda1.llegadaMercaderia(10);
+        
+        tienda1.llegadaMercaderia(2);
+        tienda1.llegadaMercaderia(5);
+        
+        //9
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 }
