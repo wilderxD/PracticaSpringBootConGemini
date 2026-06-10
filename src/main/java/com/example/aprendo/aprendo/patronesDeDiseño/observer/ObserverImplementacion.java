@@ -95,14 +95,17 @@ public class ObserverImplementacion {
         tienda1.llegadaMercaderia(5);
         
         //9
+        EventManager evt = new EventManager();
         
+        IListener1 l1 = new ServicioNotificacionEmail();
+        IListener1 l2 = new ServicioNotificacionSMS();
         
+        evt.suscribirEmail(l1);
+        evt.suscribirSMS(l2);
         
+        SistemaCompras sc = new SistemaCompras(evt);
         
-        
-        
-        
-        
+        sc.realizarCompra();
         
         
     }
